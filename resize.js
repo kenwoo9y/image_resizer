@@ -1,0 +1,1 @@
+function resizeImage(dataUri) {}
