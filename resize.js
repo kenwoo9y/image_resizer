@@ -4,7 +4,8 @@ $('.file-input').on('change',function(){
 
     // ファイルの読み込み
     fileReader(file).then(function(dataUri) {
-        console.log(dataUri);
+        // 画像のsrc要素にDataURIを設定
+        $('#image').attr({src: dataUri});
     })
     .catch(function(error) {
         alert(error);
