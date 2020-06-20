@@ -1,16 +1,31 @@
 $('.file-input').on('change',function(){
     //ファイルの取得
     let file = $(this).prop('files')[0];
-    fileReader(file);
+
+    // ファイルの読み込み
+    fileReader(file).then(function(dataUri) {
+        console.log(dataUri);
+    })
+    .catch(function(error) {
+        alert(error);
+    });
 })
 
 function fileReader(file) {
-    let fileReader = new FileReader();
-    fileReader.onload = function() {
-        let dataUri = this.result;
-        console.log(dataUri);
-    };
-    fileReader.readAsDataURL(file);
+    return new Promise(function(resolve, reject) {
+        let fileReader = new FileReader();
+
+        fileReader.onload = function(event) {
+            let dataUri = event.target.result;
+            resolve(dataUri);
+        };
+
+        fileReader.onerror = function(error) {
+            reject(error);
+        };
+
+        fileReader.readAsDataURL(file);
+    });
 }
 
 function resizeImage(dataUri) {}
