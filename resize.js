@@ -12,6 +12,11 @@ $('.file-input').on('change',function(){
     });
 })
 
+$('#button').on('click', function(){
+    let dataUri = $('#image').attr('src');
+    console.log(dataUri);
+})
+
 function fileReader(file) {
     return new Promise(function(resolve, reject) {
         let fileReader = new FileReader();
